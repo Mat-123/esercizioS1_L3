@@ -32,7 +32,13 @@ if (isset($_GET['delete'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users list</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-3">
@@ -47,21 +53,24 @@ if (isset($_GET['delete'])) {
                 </tr>
             </thead>
             <tbody>
-    <?php
-    
-    foreach ($stmt as $row) {
-        echo '<tr>';
-        echo "<td>$row[id]</td>";
-        echo "<td>$row[username]</td>";
-        echo "<td>$row[email]</td>";
-        echo "<td><a href='edit.php?id=".$row["id"]."' class='btn btn-primary'>Edit</a></td>";
-        echo "<td><a href='?delete=".$row["id"]."' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to delete user with ID: ".$row["id"]."?\")'>Delete</a></td>";
-        echo '</tr>';
-    }?>
-    
-</tbody>
-</table>
+                <?php
+                    foreach ($stmt as $row) {
+                    echo '<tr>';
+                    echo "<td>$row[id]</td>";
+                    echo "<td>$row[username]</td>";
+                    echo "<td>$row[email]</td>";
+                    echo "<td><a href='edit.php?id=".$row["id"]."' class='btn btn-primary'>Edit</a></td>";
+                    echo "<td><a href='?delete=".$row["id"]."' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to delete user with ID: ".$row["id"]."?\")'>Delete</a></td>";
+                    echo '</tr>';
+                }?>
+            </tbody>
+        </table>
+<div class="button-container">
+            <a href="add.php" class="btn btn-primary">Add New User</a>
+        </div>
+
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
