@@ -15,12 +15,12 @@ $options = [
 
 $pdo = new PDO($dsn, $user, $pass, $options);
 
-$stmt = $pdo->prepare("INSERT INTO users_data (username, email) VALUES (:belnome, :ottimoprezzo)");
-$stmt->execute([
-    'belnome' => 'Pizza fatta il pomeriggio',
-    'ottimoprezzo' => 0.01,
-]);
-
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+$username = $_GET['username'];
+$email = $_GET['email'];
+$stmt = $pdo->prepare("INSERT INTO users_data (username, email) VALUES (?, ?)");
+$stmt->execute([$username, $email]);
+};
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +42,10 @@ $stmt->execute([
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>

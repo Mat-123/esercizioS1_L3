@@ -66,7 +66,7 @@ if (isset($_GET['delete'])) {
             </tbody>
         </table>
 <div class="button-container">
-            <a href="add.php" class="btn btn-primary">Add New User</a>
+            <a href="adduser.php" class="btn btn-primary">Add New User</a>
         </div>
 
 </div>
