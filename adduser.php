@@ -15,25 +15,26 @@ $options = [
 
 $pdo = new PDO($dsn, $user, $pass, $options);
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-$username = $_GET['username'];
-$email = $_GET['email'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
 $stmt = $pdo->prepare("INSERT INTO users_data (username, email) VALUES (?, ?)");
 $stmt->execute([$username, $email]);
-};
-?>
+echo "<script>alert('Dati inviati con successo!'); window.location = 'index.php';</script>";
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Users List - Add New User</title>
+    
 </head>
 <body>
 <div class="container">
-        <form action="add.php" method="get">
+        <form action="adduser.php" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" class="form-control">
